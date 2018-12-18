@@ -8,7 +8,7 @@ public class enemy_controller : MonoBehaviour {
     private int health;
     //private bool regenerate;
 
-    public TextMesh heatlh_points;
+    public TextMesh health_points;
 
     public CharacterController characterController;
 
@@ -19,7 +19,7 @@ public class enemy_controller : MonoBehaviour {
     // Use this for initialization
     void Start () {
         health = 100;
-        heatlh_points.text = health+"/100";
+        health_points.text = health+"/100";
         //regenerate = false;
     }
 
@@ -37,7 +37,7 @@ public class enemy_controller : MonoBehaviour {
         }
         */
         characterController.Move(new Vector3 (velocity * Time.deltaTime,0.0f,0.0f));
-        Debug.Log(transform.position.x);
+        //Debug.Log(transform.position.x);
         if (transform.position.x > 4.0f)
         { 
             velocity = -3.0f;
@@ -53,16 +53,22 @@ public class enemy_controller : MonoBehaviour {
 
         if (other.gameObject.tag == "bullet")
         {
+            Debug.Log("Bala");
             Destroy(other.gameObject);
             if (health > 10)
             {
                 health -= 10;
-                heatlh_points.text = health + "/100";
+                health_points.text = health + "/100";
             }
             else
             {
                 Destroy(gameObject);
             }
+        }
+        if (other.gameObject.tag == "Player")
+        {
+           // Debug.Log("Siente el choque");
+     
         }
     }
 

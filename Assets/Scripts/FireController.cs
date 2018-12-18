@@ -19,7 +19,7 @@ public class FireController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKey(KeyCode.P) && Time.time > nextFire)
+        if (Input.GetKeyDown(KeyCode.P) && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
             GameObject new_bullet = (GameObject)Instantiate(bullet, bullet.transform.position, bullet.transform.rotation);

@@ -31,6 +31,7 @@ public class MoveCapsule : MonoBehaviour
     //Texto
     public Text health_points;
     public Text game_over;
+    public Text game_text_restart;
 
     //¿muerto?
     private bool player_dead;
@@ -52,6 +53,7 @@ public class MoveCapsule : MonoBehaviour
         health_points.text = "Vida: " + health;
         gets_shoot = false;
         game_over.text = "";
+        game_text_restart.text = "";
         player_dead = false;
         // let the gameObject fall down
         //gameObject.transform.position = new Vector3(0, 5, 0);
@@ -123,6 +125,10 @@ public class MoveCapsule : MonoBehaviour
                     mesh_renderer.enabled = true;
                 }
             }
+            if (transform.position.y < -50.0f)
+            {
+                the_plater_is_dead();
+            }
         }
         else
         {
@@ -170,12 +176,19 @@ public class MoveCapsule : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("RIP");
-                    health_points.text = "Vida: 0";
-                    game_over.text = "BOI YOU DEAD";
-                    player_dead = true;
+                    the_plater_is_dead();
                 }
             }
         }
+    }
+
+    //función cuando el jugador muere
+    void the_plater_is_dead()
+    {
+        Debug.Log("RIP");
+        health_points.text = "Vida: 0";
+        game_over.text = "YOU DEAD BOI";
+        player_dead = true;
+        game_text_restart.text = "Press R to restart game";
     }
 }
